@@ -1,0 +1,92 @@
+body{
+   background-color: white;
+}
+.container2{
+   display: flex;
+   flex-wrap: wrap;
+}
+.card{
+   margin-top: auto;
+   margin-left: auto;
+   margin-right: auto ; 
+   height:auto;
+   width: auto;
+   flex-grow: 1;
+   flex-basis: 1-00;
+   background-color: #fff;
+   justify-content: ÷center;
+   align-items:center;   
+}
+#navbar{
+
+   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; 
+   
+}
+#but{
+   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+   margin-right: 20px;
+   width: 20%;
+}
+body{
+   background-color:whitesmoke;
+}
+#searchBar{
+   margin-top: 60px;
+}
+#input{
+   width: 400px;
+   margin-right: 10px;
+   background-color:white;
+   color: black;
+}
+.warning{
+   color: red;
+   font-size: 60px;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   text-align: center;
+   margin-top: 13%;
+   background-color:black;
+   text-shadow: blue;
+}
+
+
+.fixed-bottom{
+   /* background-color: green; */
+   /* padding: 10px 20px; */
+   font-size: 16px;
+   font-weight: bold;
+   color: #fff;
+   background-color:#28a745;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+.fixed-bottom:hover {
+   background-color: #218838;
+}
+/* .......................................... */
+
+@media (max-width: 768px) { 
+   .d-flex {
+     flex-direction: row;
+     margin: 0 5px; 
+     width: 100%; 
+     /* margin-left: 12px; */
+   }
+   
+   #input {
+      margin-top: 8px;
+      width: 100%; 
+   }
+   
+   #but {
+      margin-top: 8px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      width: 20%; 
+   }
+ }
+  /* ------------------------------------------- */
+
+  
+
