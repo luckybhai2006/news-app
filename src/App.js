@@ -31,19 +31,14 @@ class App extends Component {
   };
 
   render() {
-    const apiKey = "f1cb677854e949c2b7a3ad7f952a956d";
+    const apiKey = process.env.REACT_APP_API_KEY;
+    // const apiKey = "f1cb677854e949c2b7a3ad7f952a956d";
     const pageSize = 10; // Number of articles to display per page
 
     return (
       <Router>
         <div>
-          <Navbar 
-            selectedCountry={this.state.country}
-            handleCountryChange={this.handleCountryChange}
-            searchTerm={this.state.searchTerm}
-            handleInputChange={this.handleInputChange}
-            handleSearch={this.handleSearch}
-          />
+          <Navbar />
           <Routes>
             <Route path="/" element={<News category="general" pagesize={pageSize} api={apiKey} country={this.state.country} setProgress={() => { }} />} />
             <Route path="/business" element={<News category="business" pagesize={pageSize} api={apiKey} country={this.state.country} setProgress={() => { }} />} />

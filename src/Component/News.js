@@ -25,8 +25,11 @@ class News extends Component {
       }
 
       this.props.setProgress(30);
-      const apiKey = 'f1cb677854e949c2b7a3ad7f952a956d';
-      let url = `https://newsapi.org/v2/everything?q=${this.state.searchTerm}&apiKey=${apiKey}`;
+      const apiKey = process.env.REACT_APP_API_KEY;
+
+      // Use the country and search term in the search API URL
+      const { country } = this.props;
+      const url = `http://192.168.1.41:5000/api/search?query=${this.state.searchTerm}&country=${country}&apiKey=${apiKey}`;
 
       this.setState({ loading: true });
 
@@ -50,9 +53,11 @@ class News extends Component {
 
    async newsupdate() {
       this.props.setProgress(80);
-      const { country, category, api, pagesize } = this.props;
+      const { country, category } = this.props;
       const { page } = this.state;
-      let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${api}&page=${page}&pageSize=${pagesize}`;
+
+      // Include the country parameter in the news API URL
+      const url = `http://192.168.1.41:5000/api/news?country=${country}&category=${category}&page=${page}`;
 
       console.log("Fetching URL: ", url);  // Log the URL to check it
 
@@ -82,16 +87,18 @@ class News extends Component {
    }
 
    componentDidUpdate(prevProps) {
-      if (prevProps.category !== this.props.category) {
+      if (prevProps.category !== this.props.category || prevProps.country !== this.props.country) {
+         // Reset the page and articles when the category or country changes
          this.setState({ page: 1, articles: [] }, this.newsupdate);
       }
    }
 
    fetchMoreData = async () => {
-      const { country, category, api, pagesize } = this.props;
+      const { category, country } = this.props;
       const { page, articles } = this.state;
 
-      let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${api}&page=${page + 1}&pageSize=${pagesize}`;
+      // Update the API URL to include the country parameter
+      const url = `http://192.168.1.41:5000/api/news?country=${country}&category=${category}&page=${page + 1}`;
 
       this.setState({ page: page + 1, loading: true });
 
@@ -128,9 +135,16 @@ class News extends Component {
 
       return (
          <>
-            <Navbar handleKeyDown={this.handleKeyDown} handleInputChange={this.handleInputChange} handleSearch={this.handleSearch} searchTerm={this.state.searchTerm} />
+            <Navbar 
+               handleKeyDown={this.handleKeyDown} 
+               handleInputChange={this.handleInputChange} 
+               handleSearch={this.handleSearch} 
+               searchTerm={this.state.searchTerm} 
+            />
 
-            <h1 className='text-center' style={{ marginTop: '115px' }} ><u><strong>NewsMonkey - Top Headings from {this.props.category} category </strong></u></h1>
+            <h1 className='text-center' style={{ marginTop: '115px' }}>
+               <u><strong>NewsMonkey - Top Headlines from {this.props.category} category</strong></u>
+            </h1>
 
             {loading && <Spinner />}
 
@@ -152,7 +166,7 @@ class News extends Component {
                               <div key={index} className="col-md-2 col-12"> {/* col-12 for full width on mobile */}
                                  <Newsitem
                                     imageUrl={element.urlToImage}
-                                    tytle={element.title ? element.title.slice(0, 50) : ''}
+                                    title={element.title ? element.title.slice(0, 50) : ''}  // Fixed typo: 'tytle' to 'title'
                                     des={element.description ? element.description.slice(0, 100) : ''}
                                     newsUrl={element.url}
                                     author={element.author}
