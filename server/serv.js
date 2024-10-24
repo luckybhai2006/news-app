@@ -8,7 +8,7 @@ app.use(cors());
 
 // Route to fetch top headlines by category
 app.get('/api/news', async (req, res) => {
-  const apiKey = "a5ee5a76d7b54444b72e12e733b19dfa";
+  const apiKey = process.env.REACT_APP_API_KEY || "a5ee5a76d7b54444b72e12e733b19dfa";
   // const apiKey = process.env.REACT_APP_API_KEY;
   const { category } = req.query;
   const url = `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=${apiKey}`;
@@ -23,7 +23,7 @@ app.get('/api/news', async (req, res) => {
 
 // Route to search for news articles
 app.get('/api/search', async (req, res) => {
-  const apiKey = "a5ee5a76d7b54444b72e12e733b19dfa"; 
+  const apiKey = process.env.REACT_APP_API_KEY || "a5ee5a76d7b54444b72e12e733b19dfa"; 
   // const apiKey = process.env.REACT_APP_API_KEY; 
   const { query } = req.query; // Get the search query from the request
   const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`; // Construct the search API URL
