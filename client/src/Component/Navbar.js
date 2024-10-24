@@ -6,7 +6,7 @@ function Navbar(props) {
   return (
     <nav className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark' id='navbar'>
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">NewsMonky🐒</Link>
+        <Link className="navbar-brand" to="/">NewsMonky<span role="img" aria-label="Monkey">🐒</span></Link>
         <button 
           className="navbar-toggler" 
           type="button" 
